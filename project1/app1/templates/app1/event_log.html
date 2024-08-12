@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Records</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 60px; /* Space for header */
+            padding-bottom: 40px; /* Space for footer */
+            overflow-y: auto; /* Enable vertical scrolling if needed */
+        }
+        
+        .event-table {
+            width: 98%;
+            border-collapse: collapse;
+            margin-left:15px;
+            margin-bottom:60px;
+            
+        }
+        .event-table th, .event-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .event-table th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-transform: uppercase;
+            color: #009879;
+            background-color: #e6f7f4;
+        }
+        .event-table tr:hover {
+            background-color: #f2f2f2;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            background-color: #009879;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            margin-left:15px;
+        }
+        .btn:hover {
+            background-color: #007961;
+        }
+
+
+        /* Header and Navigation Styles */
+        header {
+            background-color: #009879;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure header is on top */
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 5px 0;
+        }
+
+        nav a {
+            margin: 0 90px;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #009879;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure footer is on top */
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="{% url 'event_records' %}">Home</a> 
+            <a href="{% url 'event_log' %}">Event Log</a>
+            <a href="#">About</a>
+            <a href="#">Settings</a>
+            <!-- Add more navigation links as needed -->
+        </nav>
+    </header>
+   
+    <table class="event-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Event Name</th>
+                <th>RFID</th>
+                <th>Status</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            {% for log in record.event_log_set.all %}
+            <tr>
+                <td>{{ record.name }}</td>
+                <td>{{ record.event_name }}</td>
+                <td>{{ record.rfid }}</td>
+                <td>{{ log.status }}</td>
+                <td>{{ log.time }}</td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <footer>
+        <p>&copy; 2024 Ultimate Design Technology LLP . All rights reserved.</p>
+       
+    </footer>
+
+</body>
+</html>
