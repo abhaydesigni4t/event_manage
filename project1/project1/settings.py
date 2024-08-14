@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7*ikvnz*hsx3j$7*cz9#ix3k8cxzpfxs-sgew1&$gnb4fjo3t0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app1',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
@@ -128,4 +130,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
+# settings.py
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# settings.py
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
