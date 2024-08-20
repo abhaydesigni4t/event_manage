@@ -88,6 +88,3 @@ class EventDetailsView(APIView):
         }
 
         return Response(response_data)
-    
-def aaa(request):
-    return render(request,'app1/index.html')

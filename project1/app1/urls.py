@@ -11,7 +11,7 @@ urlpatterns = [
     path('event_log/', views.event_log_view, name='event_log'),
     path('event_log_api/', EventLogCreateView.as_view(), name='event_log_create'),
     path('event_details/', EventDetailsView.as_view(), name='event_details'),
-    path('aaa/', views.aaa, name='aaa'),
+   
 
  
     
